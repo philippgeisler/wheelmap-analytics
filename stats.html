@@ -45,7 +45,7 @@
 			  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 			
 			  // d3.text("stats.csv", function(raw) {
-			  d3.text("nodestats.csv", function(raw) {
+			  d3.text("stats_Hamburg-subcategories-transposed.csv", function(raw) {
 				d3.csv.parse(raw, function(d, i) {
 					categories[i] = d.category;
 					data[0].push({x: i, y: +d.unknown});
