@@ -3,13 +3,18 @@
 url='http://wheelmap.org/api/nodes' # base URL of API
 key='s5ktzroxt9ytD53ZKTMB' # Your Wheelmap API key
 
-cat locations | while read city bbox
+# "location" will become "category" in the transposed file until fixed in ./transpose.sh
+echo "location,wheels,count" > "stats_locations.csv"
+
+cat locations | while read city s n w e
 do
+	bbox="$w,$n,$e,$s"
+
 	echo
 	echo "Gathering data for $city ($bbox)"
 
 	dir="$(date +'%Y-%m-%d')-$city"
-
+	
 	if [ ! -d $dir ]
 	then 
 		mkdir $dir
@@ -36,20 +41,22 @@ do
 	fi
 
 	echo -e "\nCompiling nodes..."
-	cat $(ls ./$dir/nodes.*) | jq .nodes[] > "nodes_$city.json"
+	cat $(ls ./$dir/nodes.*) | jq '.nodes[]' > "nodes_$city.json"
 
 	echo "Creating nodes.tsv for QGIS..."
 	echo "name	id	node_type	category	latitude	longitude	wheels" > "nodes_$city.tsv"
 	jq -c '.name + "__,__" + (.id | tostring) + "__,__" + .node_type.identifier + "__,__" + .category.identifier + "__,__" + (.lat | tostring) + "__,__" + (.lon | tostring) + "__,__" + .wheelchair' < "nodes_$city.json" | sed 's/__,__/\t/g' | sed 's/"//g' >> "nodes_$city.tsv"
 
+	# info: D3 doesn't seem to be able to parse header row with spaces
 	echo "Compiling statistics..."
-	# Beware, D3 doesn't seem to be able to parse header row with spaces
+	jq -c '.wheelchair' < "nodes_$city.json" | sed 's/"//g' | sort | uniq -c | awk -v location="$city" '{print location "," $2 "," $1}' >> "stats_locations.csv"
 	echo "category,wheels,count" > "stats_$city-categories.csv"
 	jq -c '.category.identifier + " " + .wheelchair' < "nodes_$city.json" | sed 's/"//g' | sort | uniq -c | awk '{print $2 "," $3 "," $1}' >> "stats_$city-categories.csv"
 	echo "node_type,wheels,count" > "stats_$city-subcategories.csv"
 	jq -c '.node_type.identifier + " " + .wheelchair' < "nodes_$city.json" | sed 's/"//g' | sort | uniq -c | awk '{print $2 "," $3 "," $1}' >> "stats_$city-subcategories.csv"
 
-	./transpose.sh -F, "stats_$city-subcategories.csv" > "stats_$city-subcategories-transposed.csv"
+	./transpose.sh -F, "stats_$city-subcategories.csv" | awk 'NR!=2' > "stats_$city-subcategories-transposed.csv"
+	./transpose.sh -F, "stats_locations.csv" | awk 'NR!=2' > "stats_locations-transposed.csv"
 
 done
 echo

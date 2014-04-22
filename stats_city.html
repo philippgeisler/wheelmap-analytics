@@ -1,0 +1,121 @@
+<html lang="de">
+	<head>
+		<meta charset="utf8">
+		<title>D3 Zeug</title>
+		<script type="text/javascript" src="d3/d3.js"></script>
+		<style type="text/css">
+			body {
+				background-color: #ddd;
+			}
+
+			.category {
+				font-weight: bold;
+			}
+
+			/* SVG */
+			.axis path,
+			.axis line {
+				fill: none;
+				stroke: black;
+				shape-rendering: crispEdges;
+			}
+
+			.axis text {
+				font-family: sans-serif;
+				font-size: 9pt;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+
+			// static data for testing (Hamburg)
+			// Format: var data = [[],[],[],[]];
+			var data = [
+				[ { x: "Hamburg", y: 27148 } ], // unknown
+				[ { x: "Hamburg", y:  1626 } ], // no
+				[ { x: "Hamburg", y:  2123 } ], // limited
+				[ { x: "Hamburg", y:  5070 } ]  // yes
+			];
+
+			var s = 0;
+			data.forEach( function(d) {
+				d.forEach(function(d) {
+					s = s + d.y;
+				});
+			});
+
+			var margin = { top: 18, right: 20, bottom: 20, left: 160 };
+			var w = 960 - margin.left - margin.right;
+			var h = 160 - margin.top - margin.bottom;
+
+			// https://gist.github.com/mbostock/3019563
+			var svg = d3.select("body")
+			  .append("svg")
+			  .attr("width", w + margin.left + margin.right)
+			  .attr("height", h + margin.top + margin.bottom)
+			  .append("g")
+			  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			
+			var stack = d3.layout.stack();
+			stack(data);
+
+			var max = d3.max(data, function(d) {
+				return d3.max(d, function(d) {
+					return d.y0 + d.y;
+				});
+			});
+
+			var scale_x = d3.scale.linear()
+			  .domain([0, 100]) // max = 100%
+			  .range([0, w]);
+
+			var scale_y = d3.scale.ordinal()
+			  // .domain(d3.range(data[0].length))
+			  .domain(["Hamburg"])
+			  .rangeRoundBands([0, h], 0.1);
+
+			var xAxis = d3.svg.axis()
+			  .scale(scale_x)
+			  .orient("top");
+
+			var yAxis = d3.svg.axis()
+			  .scale(scale_y)
+			  .orient("left");
+
+			// var colour = d3.scale.category10();
+			var colour = d3.scale.ordinal()
+			//  .domain(d3.range(data.length))
+			  .range(["#999","#b33","#bb3","#3b3"]);
+
+			// Add a group for each row of data
+		    var groups = svg.selectAll("g")
+			  .data(data)
+			  .enter()
+			  .append("g")
+			  .style("fill", function(d, i) {
+				return colour(i);
+			  });
+
+			var rects = groups.selectAll("rect")
+			  .data(function(d){ return d; })
+			  .enter()
+			  .append("rect")
+			  .attr("x", function(d) { return scale_x(d.y0 / s * 100); })
+			  .attr("y", function(d, i) { return scale_y(i); })
+			  .attr("width", function(d) { return scale_x(d.y / s * 100); })
+			  .attr("height", scale_y.rangeBand());
+			
+			// Axes _last_ or groups.selectAll("g") goes wrong
+			svg.append("g")
+			  .attr("class", "axis")
+			  .call(xAxis);
+
+			svg.append("g")
+			  .attr("class", "axis")
+			  .call(yAxis);
+			
+
+		</script>
+	</body>
+</html>
