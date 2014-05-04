@@ -102,14 +102,27 @@
 					return colour(i);
 				  });
 
+				// Set to zero as preparation for startup animation
 				var rects = groups.selectAll("rect")
 				  .data(function(d){ return d; })
 				  .enter()
 				  .append("rect")
-				  .attr("x", function(d) { return scale_x(d.y0); })
+				  .attr("x", 0)
 				  .attr("y", function(d, i) { return scale_y(locations[i]); })
-				  .attr("width", function(d) { return scale_x(d.y); })
+				  .attr("width", 0)
 				  .attr("height", scale_y.rangeBand());
+
+				// Updating values via transition(), thus creating animation
+				rects = groups.selectAll("rect")
+				  .data(function(d){ return d; })
+				  .transition()
+				  .delay(function(d) {
+				  	return d.x * 500;
+				  })
+				  .duration(400)
+				  .ease("linear") // linear: default; elastic: boing-y; circle: ~linear²; bounce: as if dropping onto max-value
+				  .attr("x", function(d) { return scale_x(d.y0); })
+				  .attr("width", function(d) { return scale_x(d.y); });
 				  // .attr("text", function(d) { return d.cnt; });	
 
 				groups.selectAll("rect")
