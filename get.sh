@@ -2,6 +2,14 @@
 
 url='http://wheelmap.org/api/nodes' # base URL of API
 key='s5ktzroxt9ytD53ZKTMB' # Your Wheelmap API key
+datadir="data"
+
+if [ ! -d $datadir ]
+then
+	mkdir $datadir
+fi
+
+cd $datadir
 
 # "location" will become "category" in the transposed file until fixed in ./transpose.sh
 echo "location,wheels,count" > "stats_locations.csv"
@@ -44,8 +52,8 @@ do
 	cat $(ls ./$dir/nodes.*) | jq '.nodes[]' > "nodes_$city.json"
 
 	echo "Creating nodes.tsv for QGIS..."
-	echo "name	id	node_type	category	latitude	longitude	wheels" > "nodes_$city.tsv"
-	jq -c '.name + "__,__" + (.id | tostring) + "__,__" + .node_type.identifier + "__,__" + .category.identifier + "__,__" + (.lat | tostring) + "__,__" + (.lon | tostring) + "__,__" + .wheelchair' < "nodes_$city.json" | sed 's/__,__/\t/g' | sed 's/"//g' >> "nodes_$city.tsv"
+	echo "name	id	node_type	category	latitude	longitude	wheels" > "../qgis/nodes_$city.tsv"
+	jq -c '.name + "__,__" + (.id | tostring) + "__,__" + .node_type.identifier + "__,__" + .category.identifier + "__,__" + (.lat | tostring) + "__,__" + (.lon | tostring) + "__,__" + .wheelchair' < "nodes_$city.json" | sed 's/__,__/\t/g' | sed 's/"//g' >> "../qgis/nodes_$city.tsv"
 
 	# info: D3 doesn't seem to be able to parse header row with spaces
 	echo "Compiling statistics..."
@@ -55,8 +63,8 @@ do
 	echo "node_type,wheels,count" > "stats_$city-subcategories.csv"
 	jq -c '.node_type.identifier + " " + .wheelchair' < "nodes_$city.json" | sed 's/"//g' | sort | uniq -c | awk '{print $2 "," $3 "," $1}' >> "stats_$city-subcategories.csv"
 
-	./transpose.sh -F, "stats_$city-subcategories.csv" | awk 'NR!=2' > "stats_$city-subcategories-transposed.csv"
-	./transpose.sh -F, "stats_locations.csv" | awk 'NR!=2' > "stats_locations-transposed.csv"
+	../transpose.sh -F, "stats_$city-subcategories.csv" | awk 'NR!=2' > "stats_$city-subcategories-transposed.csv"
+	../transpose.sh -F, "stats_locations.csv" | awk 'NR!=2' > "stats_locations-transposed.csv"
 
 done
 echo

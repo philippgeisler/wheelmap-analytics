@@ -1,7 +1,7 @@
 <html lang="de">
 	<head>
 		<meta charset="utf8">
-		<title>D3 Zeug</title>
+		<title>Wheelmap-Statistik Detailansicht (WIP)</title>
 		<script type="text/javascript" src="d3/d3.js"></script>
 		<style type="text/css">
 			body {
@@ -27,15 +27,15 @@
 		</style>
 	</head>
 	<body>
+		<h1>Wheelmap-Statistik Detailansicht (WIP)</h1>
 		<script type="text/javascript">
 
-			var n = 0;
-			var locations = [];
+			var categories = [];
 			var data = [[],[],[],[]];
 
 			var margin = { top: 18, right: 20, bottom: 20, left: 160 };
 			var w = 960 - margin.left - margin.right;
-			var h = 500 - margin.top - margin.bottom;
+			var h = 1600 - margin.top - margin.bottom;
 
 			// https://gist.github.com/mbostock/3019563
 			var svg = d3.select("body")
@@ -47,41 +47,36 @@
 			
 			  // d3.text("stats.csv", function(raw) {
 			  // d3.text("stats_Hamburg-subcategories-transposed.csv", function(raw) {
-			  d3.text("stats_locations-transposed.csv", function(raw) {
-			  	// d: [Freiburg,no,479]
+			  d3.text("../data/stats_Hamburg-subcategories-transposed.csv", function(raw) {
 				d3.csv.parse(raw, function(d, i) {
-					locations[i] = d.category;
-					n= +d.unknown + +d.no + +d.limited + +d.yes;
-					data[0].push({x: i, y: +d.no / n     , cnt: +d.no });
-					data[1].push({x: i, y: +d.limited / n, cnt: +d.limited });
-					data[2].push({x: i, y: +d.yes / n    , cnt: +d.yes });
-					data[3].push({x: i, y: +d.unknown / n, cnt: +d.unknown });
+					categories[i] = d.category;
+					data[0].push({x: i, y: +d.unknown});
+					data[1].push({x: i, y: +d.no});
+					data[2].push({x: i, y: +d.limited});
+					data[3].push({x: i, y: +d.yes});
 				});
 
 				var stack = d3.layout.stack();
 				stack(data);
 
-				/* max no longer needed, is now 100
 				var max = d3.max(data, function(d) {
 					return d3.max(d, function(d) {
 						return d.y0 + d.y;
 					});
 				});
-				*/
 
 				var scale_x = d3.scale.linear()
-				  .domain([0, 1])
+				  .domain([0, max])
 				  .range([0, w]);
 
 				var scale_y = d3.scale.ordinal()
 				  // .domain(d3.range(data[0].length))
-				  .domain(locations)
+				  .domain(categories)
 				  .rangeRoundBands([0, h], 0.1);
 
 				var xAxis = d3.svg.axis()
 				  .scale(scale_x)
-				  .orient("top")
-				  .tickFormat(d3.format("%"));
+				  .orient("top");
 
 				var yAxis = d3.svg.axis()
 				  .scale(scale_y)
@@ -90,7 +85,7 @@
 				// var colour = d3.scale.category10();
 				var colour = d3.scale.ordinal()
 				//  .domain(d3.range(data.length))
-				  .range(["#b33","#bb3","#3b3", "#ccc"]);
+				  .range(["#999","#b33","#bb3","#3b3"]);
 
 				// Add a group for each row of data
 			    var groups = svg.selectAll("g")
@@ -106,10 +101,9 @@
 				  .enter()
 				  .append("rect")
 				  .attr("x", function(d) { return scale_x(d.y0); })
-				  .attr("y", function(d, i) { return scale_y(locations[i]); })
+				  .attr("y", function(d, i) { return scale_y(categories[i]); })
 				  .attr("width", function(d) { return scale_x(d.y); })
 				  .attr("height", scale_y.rangeBand());
-				  // .attr("text", function(d) { return d.cnt; });
 				
 				// Axes _last_ or groups.selectAll("g") goes wrong
 				svg.append("g")
