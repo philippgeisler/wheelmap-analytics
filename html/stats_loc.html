@@ -117,7 +117,7 @@
 				  .data(function(d){ return d; })
 				  .transition()
 				  .delay(function(d) {
-				  	return d.x * 500;
+				  	return d.x * 200;
 				  })
 				  .duration(400)
 				  .ease("linear") // linear: default; elastic: boing-y; circle: ~linear²; bounce: as if dropping onto max-value
@@ -127,7 +127,8 @@
 
 				groups.selectAll("rect")
 				  .on("click", function(d) {
-				  	alert(locations[d.x]);
+				  	// alert(locations[d.x]);
+				  	window.location.href = "stats.html?" + locations[d.x];
 				  });
 				
 				// Axes _last_ or groups.selectAll("g") goes wrong
