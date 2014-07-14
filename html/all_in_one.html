@@ -1,0 +1,179 @@
+<html lang="de">
+	<head>
+		<meta charset="utf8">
+		<title>Wheelmap-Statistik Detailansicht (WIP)</title>
+		<script type="text/javascript" src="d3/d3.js"></script>
+		<script type="text/javascript" src="queue/queue.js"></script>
+		<style type="text/css">
+			body {
+				background-color: #ddd;
+			}
+
+			.category {
+				font-weight: bold;
+			}
+
+			/* SVG */
+			.axis path,
+			.axis line {
+				fill: none;
+				stroke: black;
+				shape-rendering: crispEdges;
+			}
+
+			rect {
+				shape-rendering: crispEdges;
+			}
+
+			.axis text {
+				font-family: sans-serif;
+				font-size: 9pt;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Wheelmap-Statistik</h1>
+		<script type="text/javascript">
+
+			var categories = [];
+			var data = {
+				all: [[],[],[],[]], 
+				b: [[],[],[],[]],
+				d: [[],[],[],[]],
+				f: [[],[],[],[]],
+				hh: [[],[],[],[]],
+				m: [[],[],[],[]]
+			};
+
+			var scale_y; 
+
+			var margin = { top: 18, right: 20, bottom: 18, left: 160 };
+			var w = 960 - margin.left - margin.right;
+			var h = 500 - margin.top - margin.bottom;
+
+			// var param = window.location.href.split('?')[1];
+			// if (param == "") { param = "Hamburg" };
+
+			// loading files using queue.js
+			queue()
+				.defer(d3.text, '../data/stats_locations-transposed.csv')
+				.defer(d3.text, '../data/stats_Berlin-subcategories-transposed.csv')
+				.defer(d3.text, '../data/stats_Dortmund-subcategories-transposed.csv')
+				.defer(d3.text, '../data/stats_Frankfurt-subcategories-transposed.csv')
+				.defer(d3.text, '../data/stats_Hamburg-subcategories-transposed.csv')
+				.defer(d3.text, '../data/stats_München-subcategories-transposed.csv')
+				.await(initMap);
+
+			// D3
+			function initMap(error, overview, berlin, dortmund, frankfurt, hamburg, muenchen) {
+				d3.csv.parse(overview, function(d, i) {
+					categories[i] = d.category;
+					data.all[0].push({x: d.category, y: +d.unknown});
+					data.all[1].push({x: d.category, y: +d.no});
+					data.all[2].push({x: d.category, y: +d.limited});
+					data.all[3].push({x: d.category, y: +d.yes});
+				});
+
+				// https://gist.github.com/mbostock/3019563
+				var svg = d3.select("body")
+				  .append("svg")
+				  .attr("width", w + margin.left + margin.right)
+				  .attr("height", h + margin.top + margin.bottom)
+				  .append("g")
+				  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+			
+				var stack = d3.layout.stack();
+				stack(data.all);
+
+				var max = d3.max(data.all, function(d) {
+					return d3.max(d, function(d) {
+						return d.y0 + d.y;
+					});
+				});
+
+				// calculate sum value FOR EACH RECT
+				data.all.forEach(function(d, i) {
+					// d: an array of index 0 to 3 (for unknown, no,...)
+					d.forEach(function(e, j) {
+						e.s = data.all[3][j].y + data.all[3][j].y0; 
+					});
+				});
+
+				// sort pos.1; problem: drawing order of transition due to wrong scale...
+				// (categories[] is not sorted!)
+				data.all.forEach(function(d) {
+					d.sort(function(a, b) {
+						return d3.descending(a.s, b.s);
+					});
+				});
+
+				data.all[0].forEach(function(d, i) {
+					categories[i] = d.x;
+				});
+
+				var scale_x = d3.scale.linear()
+				  .domain([0, max])
+				  .range([0, w]);
+
+				scale_y = d3.scale.ordinal()
+				  .domain(categories)
+				  //.rangeBands([0, h], 0.2);     // uneven due to rounding
+				  .rangeRoundBands([0, h], 0.2);  // don't understand behaviour...
+
+				var xAxis = d3.svg.axis()
+				  .scale(scale_x)
+				  .orient("top");
+
+				var yAxis = d3.svg.axis()
+				  .scale(scale_y)
+				  .orient("left");
+
+				// var colour = d3.scale.category10();
+				var colour = d3.scale.ordinal()
+				//  .domain(d3.range(data.all.length))
+				  .range(["#999","#b33","#bb3","#3b3"]);
+
+				// Add a group for each row of data
+			    var groups = svg.selectAll("g")
+				  .data(data.all)
+				  .enter()
+				  .append("g")
+				  .style("fill", function(d, i) {
+					return colour(i);
+				  });
+
+				var rects = groups.selectAll("rect")
+				  .data(function(d){ return d; })
+				  .enter()
+				  .append("rect")
+  				  //.attr("x", function(d) { return scale_x(d.y0); })
+				  .attr("x", 0)
+				  .attr("y", function(d) { return scale_y(d.x); })
+				  //.attr("width", function(d) { return scale_x(d.y); })
+				  .attr("width", 0)
+				  .attr("height", scale_y.rangeBand());
+				
+				rects = groups.selectAll("rect")
+				  .transition()
+				  .delay(function(d) {
+				  	return categories.indexOf(d.x) * 70;
+				  })
+				  .duration(400)
+				  .ease("linear")
+				  .attr("x", function(d) { return scale_x(d.y0); })
+				  // .attr("y", function(d, i) { return scale_y(categories[i]); })
+				  .attr("width", function(d) { return scale_x(d.y); });
+				
+				
+				// Axes _last_ or groups.selectAll("g") goes wrong
+				svg.append("g")
+				  .attr("class", "axis")
+				  .call(xAxis);
+
+				svg.append("g")
+				  .attr("class", "axis")
+				  .call(yAxis);
+			}
+		</script>
+	</body>
+</html>
