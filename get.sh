@@ -1,7 +1,7 @@
 #!/bin/bash
 
 url='http://wheelmap.org/api/nodes' # base URL of API
-key='s5ktzroxt9ytD53ZKTMB' # Your Wheelmap API key
+key='' # Your Wheelmap API key
 datadir="data"
 
 if [ ! -d $datadir ]

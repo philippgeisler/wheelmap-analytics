@@ -62,14 +62,6 @@
 				var stack = d3.layout.stack();
 				stack(data);
 
-				/* max no longer needed, is now 100
-				var max = d3.max(data, function(d) {
-					return d3.max(d, function(d) {
-						return d.y0 + d.y;
-					});
-				});
-				*/
-
 				var scale_x = d3.scale.linear()
 				  .domain([0, 1])
 				  .range([0, w]);
@@ -88,9 +80,7 @@
 				  .scale(scale_y)
 				  .orient("left");
 
-				// var colour = d3.scale.category10();
 				var colour = d3.scale.ordinal()
-				//  .domain(d3.range(data.length))
 				  .range(["#b33","#bb3","#3b3", "#ccc"]);
 
 				// Add a group for each row of data
@@ -120,14 +110,13 @@
 				  	return d.x * 200;
 				  })
 				  .duration(400)
-				  .ease("linear") // linear: default; elastic: boing-y; circle: ~linear²; bounce: as if dropping onto max-value
+				  .ease("linear")
 				  .attr("x", function(d) { return scale_x(d.y0); })
 				  .attr("width", function(d) { return scale_x(d.y); });
 				  // .attr("text", function(d) { return d.cnt; });	
 
 				groups.selectAll("rect")
 				  .on("click", function(d) {
-				  	// alert(locations[d.x]);
 				  	window.location.href = "stats_detail.html?" + locations[d.x];
 				  });
 				
