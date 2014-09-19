@@ -6,7 +6,7 @@
         <layer-tree-layer expanded="1" checked="Qt::Checked" id="nodes_Hamburg20140824212026942" name="nodes_Hamburg">
             <customproperties/>
         </layer-tree-layer>
-        <layer-tree-layer expanded="1" checked="Qt::Checked" id="OpenLayers_plugin_layer20140824210829171" name="OCM Public Transport">
+        <layer-tree-layer expanded="1" checked="Qt::Checked" id="OpenLayers_plugin_layer20140919124842318" name="OCM Public Transport">
             <customproperties/>
         </layer-tree-layer>
     </layer-tree-group>
@@ -14,10 +14,10 @@
     <mapcanvas>
         <units>meters</units>
         <extent>
-            <xmin>1111536.53045272803865373</xmin>
-            <ymin>7084558.52096992451697588</ymin>
-            <xmax>1113148.93797693098895252</xmax>
-            <ymax>7085486.50312056485563517</ymax>
+            <xmin>1109508.29071594681590796</xmin>
+            <ymin>7083353.88290209323167801</ymin>
+            <xmax>1116631.04123417055234313</xmax>
+            <ymax>7087904.67486915364861488</ymax>
         </extent>
         <projections>1</projections>
         <destinationsrs>
@@ -33,14 +33,21 @@
             </spatialrefsys>
         </destinationsrs>
         <layer_coordinate_transform_info>
+            <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="OpenLayers_plugin_layer20140919120301386"/>
+            <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="OpenLayers_plugin_layer20140919124842318"/>
+            <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:4326" srcDatumTransform="-1" destDatumTransform="-1" layerid="temp_shp20140917132714397"/>
+            <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="OpenLayers_plugin_layer20140910125849866"/>
+            <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="OpenLayers_plugin_layer20140919120150683"/>
             <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="OpenLayers_plugin_layer20140824210829171"/>
+            <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="OpenLayers_plugin_layer20140917143244436"/>
             <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="nodes_Hamburg20140824212026942"/>
+            <layer_coordinate_transform destAuthId="EPSG:3857" srcAuthId="EPSG:3857" srcDatumTransform="-1" destDatumTransform="-1" layerid="OpenLayers_plugin_layer20140917132355939"/>
         </layer_coordinate_transform_info>
     </mapcanvas>
     <layer-tree-canvas>
         <custom-order enabled="0">
-            <item>OpenLayers_plugin_layer20140824210829171</item>
             <item>nodes_Hamburg20140824212026942</item>
+            <item>OpenLayers_plugin_layer20140919124842318</item>
         </custom-order>
     </layer-tree-canvas>
     <legend updateDrawingOrder="true">
@@ -51,13 +58,203 @@
         </legendlayer>
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="OCM Public Transport" showFeatureCount="0">
             <filegroup open="true" hidden="false">
-                <legendlayerfile isInOverview="0" layerid="OpenLayers_plugin_layer20140824210829171" visible="1"/>
+                <legendlayerfile isInOverview="0" layerid="OpenLayers_plugin_layer20140919124842318" visible="1"/>
             </filegroup>
         </legendlayer>
     </legend>
+    <Composer title="HHAccessibilityPubTransport" visible="0">
+        <Composition snapGridTolerance="2" gridVisible="0" printResolution="300" paperWidth="297" snapGridOffsetX="0" guidesVisible="1" snapGridResolution="10" snapGridOffsetY="0" alignmentSnap="1" snapping="0" numPages="1" paperHeight="210" alignmentSnapTolerance="2" smartGuides="1" printAsRaster="0" generateWorldFile="0">
+            <symbol alpha="1" type="fill" name="">
+                <layer pass="0" class="SimpleFill" locked="0">
+                    <prop k="border_width_map_unit_scale" v="0,0"/>
+                    <prop k="border_width_unit" v="MM"/>
+                    <prop k="color" v="255,255,255,255"/>
+                    <prop k="color_border" v="0,0,0,255"/>
+                    <prop k="joinstyle" v="miter"/>
+                    <prop k="offset" v="0,0"/>
+                    <prop k="offset_map_unit_scale" v="0,0"/>
+                    <prop k="offset_unit" v="MM"/>
+                    <prop k="style" v="solid"/>
+                    <prop k="style_border" v="no"/>
+                    <prop k="width_border" v="0.26"/>
+                </layer>
+            </symbol>
+            <ComposerLegend symbolWidth="7" title="Legend" boxSpace="2" splitLayer="0" equalColumnWidth="0" titleAlignment="1" symbolHeight="4" wmsLegendHeight="25" wrapChar="" fontColor="#000000" columnSpace="2" wmsLegendWidth="50" columnCount="1">
+                <styles>
+                    <style marginBottom="2" name="title" font="MS Shell Dlg 2,16,-1,5,50,0,0,0,0,0"/>
+                    <style marginTop="2" name="group" font="MS Shell Dlg 2,14,-1,5,50,0,0,0,0,0"/>
+                    <style marginTop="2" name="subgroup" font="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0"/>
+                    <style marginTop="2" name="symbol" font="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0"/>
+                    <style marginTop="2" marginLeft="2" name="symbolLabel" font="MS Shell Dlg 2,12,-1,5,50,0,0,0,0,0"/>
+                </styles>
+                <Model autoUpdate="1">
+                    <LayerItem layerId="nodes_Hamburg20140824212026942" userText="Accessible?" style="subgroup" text="Accessible?" showFeatureCount="0">
+                        <VectorClassificationItemNg userText="" text="yes">
+                            <symbols>
+                                <symbol alpha="1" type="marker" name="classificationSymbol">
+                                    <layer pass="0" class="SimpleMarker" locked="0">
+                                        <prop k="angle" v="0"/>
+                                        <prop k="color" v="85,170,0,255"/>
+                                        <prop k="color_border" v="85,170,0,255"/>
+                                        <prop k="horizontal_anchor_point" v="1"/>
+                                        <prop k="name" v="circle"/>
+                                        <prop k="offset" v="0,0"/>
+                                        <prop k="offset_map_unit_scale" v="0,0"/>
+                                        <prop k="offset_unit" v="MM"/>
+                                        <prop k="outline_style" v="solid"/>
+                                        <prop k="outline_width" v="1.2"/>
+                                        <prop k="outline_width_map_unit_scale" v="0,0"/>
+                                        <prop k="outline_width_unit" v="MM"/>
+                                        <prop k="scale_method" v="area"/>
+                                        <prop k="size" v="2"/>
+                                        <prop k="size_map_unit_scale" v="0,0"/>
+                                        <prop k="size_unit" v="MM"/>
+                                        <prop k="vertical_anchor_point" v="1"/>
+                                    </layer>
+                                </symbol>
+                            </symbols>
+                        </VectorClassificationItemNg>
+                        <VectorClassificationItemNg userText="" text="limited">
+                            <symbols>
+                                <symbol alpha="1" type="marker" name="classificationSymbol">
+                                    <layer pass="0" class="SimpleMarker" locked="0">
+                                        <prop k="angle" v="0"/>
+                                        <prop k="color" v="255,170,0,255"/>
+                                        <prop k="color_border" v="255,170,0,255"/>
+                                        <prop k="horizontal_anchor_point" v="1"/>
+                                        <prop k="name" v="circle"/>
+                                        <prop k="offset" v="0,0"/>
+                                        <prop k="offset_map_unit_scale" v="0,0"/>
+                                        <prop k="offset_unit" v="MM"/>
+                                        <prop k="outline_style" v="solid"/>
+                                        <prop k="outline_width" v="1"/>
+                                        <prop k="outline_width_map_unit_scale" v="0,0"/>
+                                        <prop k="outline_width_unit" v="MM"/>
+                                        <prop k="scale_method" v="area"/>
+                                        <prop k="size" v="1.6"/>
+                                        <prop k="size_map_unit_scale" v="0,0"/>
+                                        <prop k="size_unit" v="MM"/>
+                                        <prop k="vertical_anchor_point" v="1"/>
+                                    </layer>
+                                </symbol>
+                            </symbols>
+                        </VectorClassificationItemNg>
+                        <VectorClassificationItemNg userText="" text="no">
+                            <symbols>
+                                <symbol alpha="1" type="marker" name="classificationSymbol">
+                                    <layer pass="0" class="SimpleMarker" locked="0">
+                                        <prop k="angle" v="0"/>
+                                        <prop k="color" v="222,0,0,255"/>
+                                        <prop k="color_border" v="229,0,0,255"/>
+                                        <prop k="horizontal_anchor_point" v="1"/>
+                                        <prop k="name" v="cross2"/>
+                                        <prop k="offset" v="0,0"/>
+                                        <prop k="offset_map_unit_scale" v="0,0"/>
+                                        <prop k="offset_unit" v="MM"/>
+                                        <prop k="outline_style" v="solid"/>
+                                        <prop k="outline_width" v="1"/>
+                                        <prop k="outline_width_map_unit_scale" v="0,0"/>
+                                        <prop k="outline_width_unit" v="MM"/>
+                                        <prop k="scale_method" v="area"/>
+                                        <prop k="size" v="1.6"/>
+                                        <prop k="size_map_unit_scale" v="0,0"/>
+                                        <prop k="size_unit" v="MM"/>
+                                        <prop k="vertical_anchor_point" v="1"/>
+                                    </layer>
+                                </symbol>
+                            </symbols>
+                        </VectorClassificationItemNg>
+                        <VectorClassificationItemNg userText="" text="unknown">
+                            <symbols>
+                                <symbol alpha="1" type="marker" name="classificationSymbol">
+                                    <layer pass="0" class="SimpleMarker" locked="0">
+                                        <prop k="angle" v="0"/>
+                                        <prop k="color" v="108,108,108,199"/>
+                                        <prop k="color_border" v="0,0,0,255"/>
+                                        <prop k="horizontal_anchor_point" v="1"/>
+                                        <prop k="name" v="circle"/>
+                                        <prop k="offset" v="0,0"/>
+                                        <prop k="offset_map_unit_scale" v="0,0"/>
+                                        <prop k="offset_unit" v="MM"/>
+                                        <prop k="outline_style" v="no"/>
+                                        <prop k="outline_width" v="0"/>
+                                        <prop k="outline_width_map_unit_scale" v="0,0"/>
+                                        <prop k="outline_width_unit" v="MM"/>
+                                        <prop k="scale_method" v="area"/>
+                                        <prop k="size" v="1.2"/>
+                                        <prop k="size_map_unit_scale" v="0,0"/>
+                                        <prop k="size_unit" v="MM"/>
+                                        <prop k="vertical_anchor_point" v="1"/>
+                                    </layer>
+                                </symbol>
+                            </symbols>
+                        </VectorClassificationItemNg>
+                    </LayerItem>
+                    <LayerItem layerId="OpenLayers_plugin_layer20140919124842318" userText="" style="subgroup" text="OCM Public Transport" showFeatureCount="0"/>
+                </Model>
+                <ComposerItem pagey="5.04116" page="1" id="" lastValidViewScaleFactor="1.98367" positionMode="0" positionLock="false" x="261.251" y="5.04116" zValue="2" background="true" transparency="0" frameJoinStyle="round" blendMode="0" width="43.4" outlineWidth="0.3" uuid="{545ce436-1c85-4669-8a61-3c51a5d93caf}" height="51.6" itemRotation="0" frame="true" pagex="261.251">
+                    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+                    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+                </ComposerItem>
+            </ComposerLegend>
+            <ComposerMap mapRotation="0" keepLayerSet="false" overviewFrameMap="-1" id="0" previewMode="Cache" drawCanvasItems="true">
+                <overviewFrame overviewBlendMode="0" overviewFrameMap="-1" overviewCentered="false" overviewInverted="false">
+                    <symbol alpha="0.3" type="fill" name="">
+                        <layer pass="0" class="SimpleFill" locked="0">
+                            <prop k="border_width_map_unit_scale" v="0,0"/>
+                            <prop k="border_width_unit" v="MM"/>
+                            <prop k="color" v="255,0,0,255"/>
+                            <prop k="color_border" v="0,0,0,255"/>
+                            <prop k="joinstyle" v="bevel"/>
+                            <prop k="offset" v="0,0"/>
+                            <prop k="offset_map_unit_scale" v="0,0"/>
+                            <prop k="offset_unit" v="MM"/>
+                            <prop k="style" v="solid"/>
+                            <prop k="style_border" v="no"/>
+                            <prop k="width_border" v="0.26"/>
+                        </layer>
+                    </symbol>
+                </overviewFrame>
+                <Extent ymin="7082743.12323761638253927" xmin="1106967.08958586677908897" ymax="7091143.12324618455022573" xmax="1118847.0895979842171073"/>
+                <LayerSet/>
+                <Grid gridStyle="1" crossLength="3" gridFramePenThickness="0.5" intervalX="0" offsetX="0" intervalY="0" offsetY="0" gridFrameStyle="0" gridFrameWidth="2" gridBlendMode="0" show="0">
+                    <framePenColor alpha="255" red="0" blue="0" green="0"/>
+                    <frameFillColor1 alpha="255" red="255" blue="255" green="255"/>
+                    <frameFillColor2 alpha="255" red="0" blue="0" green="0"/>
+                    <symbol alpha="1" type="line" name="">
+                        <layer pass="0" class="SimpleLine" locked="0">
+                            <prop k="capstyle" v="flat"/>
+                            <prop k="color" v="0,0,0,255"/>
+                            <prop k="customdash" v="5;2"/>
+                            <prop k="customdash_map_unit_scale" v="0,0"/>
+                            <prop k="customdash_unit" v="MM"/>
+                            <prop k="draw_inside_polygon" v="0"/>
+                            <prop k="joinstyle" v="bevel"/>
+                            <prop k="offset" v="0"/>
+                            <prop k="offset_map_unit_scale" v="0,0"/>
+                            <prop k="offset_unit" v="MM"/>
+                            <prop k="penstyle" v="solid"/>
+                            <prop k="use_custom_dash" v="0"/>
+                            <prop k="width" v="0.3"/>
+                            <prop k="width_map_unit_scale" v="0,0"/>
+                            <prop k="width_unit" v="MM"/>
+                        </layer>
+                    </symbol>
+                    <Annotation rightDirection="0" bottomDirection="0" format="0" topPosition="1" precision="3" leftDirection="0" rightPosition="1" bottomPosition="1" frameDistance="1" show="0" font="MS Shell Dlg 2,8.25,-1,5,50,0,0,0,0,0" leftPosition="1" topDirection="0">
+                        <fontColor alpha="255" red="0" blue="0" green="0"/>
+                    </Annotation>
+                </Grid>
+                <AtlasMap scalingMode="2" atlasDriven="0" margin="0.10000000000000001"/>
+                <ComposerItem pagey="0" page="1" id="" lastValidViewScaleFactor="1.98367" positionMode="0" positionLock="false" x="0" y="0" zValue="1" background="true" transparency="0" frameJoinStyle="miter" blendMode="0" width="297" outlineWidth="0.3" uuid="{37fc1814-970a-4bca-9837-e44f6ffa3a4b}" height="210" itemRotation="0" frame="false" pagex="0">
+                    <FrameColor alpha="255" red="0" blue="0" green="0"/>
+                    <BackgroundColor alpha="255" red="255" blue="255" green="255"/>
+                </ComposerItem>
+            </ComposerMap>
+        </Composition>
+    </Composer>
     <projectlayers layercount="2">
         <maplayer minimumScale="0" maximumScale="1e+08" type="plugin" hasScaleBasedVisibilityFlag="0" name="openlayers">
-            <id>OpenLayers_plugin_layer20140824210829171</id>
+            <id>OpenLayers_plugin_layer20140919124842318</id>
             <datasource></datasource>
             <title></title>
             <abstract></abstract>
@@ -81,9 +278,9 @@
                 <property key="ol_layer_type" value="OCM Public Transport"/>
             </customproperties>
         </maplayer>
-        <maplayer minimumScale="-4.65661e-10" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
+        <maplayer minimumScale="0" maximumScale="1e+08" simplifyDrawingHints="0" minLabelScale="0" maxLabelScale="1e+08" simplifyDrawingTol="1" geometry="Point" simplifyMaxScale="1" type="vector" hasScaleBasedVisibilityFlag="0" simplifyLocal="1" scaleBasedLabelVisibilityFlag="0">
             <id>nodes_Hamburg20140824212026942</id>
-            <datasource>file:./nodes_Hamburg.tsv?type=csv&amp;delimiter=%5Ct&amp;xField=longitude&amp;yField=latitude&amp;spatialIndex=yes&amp;subsetIndex=no&amp;watchFile=no&amp;=&amp;=&amp;=&amp;=&amp;subset=%22wheels%22%20%20%20!%3D%20'unknown'%20%20AND%20%22category%22%20%20%3D%20'public_transfer'</datasource>
+            <datasource>file:./nodes_Hamburg.tsv?type=csv&amp;delimiter=%5Ct&amp;xField=longitude&amp;yField=latitude&amp;spatialIndex=yes&amp;subsetIndex=no&amp;watchFile=no&amp;=&amp;=&amp;=&amp;=&amp;=&amp;=&amp;=&amp;=&amp;subset=%22category%22%20%20%3D%20'public_transfer'%20%20AND%20%22node_type%22%20NOT%20IN%20('fuel','bicycle_rental','parking','car_rental','car_sharing')</datasource>
             <title></title>
             <abstract></abstract>
             <keywordList>
@@ -92,7 +289,7 @@
             <layername>nodes_Hamburg</layername>
             <srs>
                 <spatialrefsys>
-                    <proj4>+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs</proj4>
+                    <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
                     <srsid>3452</srsid>
                     <srid>4326</srid>
                     <authid>EPSG:4326</authid>
@@ -110,6 +307,7 @@
                     <category symbol="0" value="yes" label="yes"/>
                     <category symbol="1" value="limited" label="limited"/>
                     <category symbol="2" value="no" label="no"/>
+                    <category symbol="3" value="unknown" label="unknown"/>
                 </categories>
                 <symbols>
                     <symbol alpha="1" type="marker" name="0">
@@ -170,6 +368,27 @@
                             <prop k="outline_width_unit" v="MM"/>
                             <prop k="scale_method" v="area"/>
                             <prop k="size" v="1.6"/>
+                            <prop k="size_map_unit_scale" v="0,0"/>
+                            <prop k="size_unit" v="MM"/>
+                            <prop k="vertical_anchor_point" v="1"/>
+                        </layer>
+                    </symbol>
+                    <symbol alpha="1" type="marker" name="3">
+                        <layer pass="0" class="SimpleMarker" locked="0">
+                            <prop k="angle" v="0"/>
+                            <prop k="color" v="108,108,108,199"/>
+                            <prop k="color_border" v="0,0,0,255"/>
+                            <prop k="horizontal_anchor_point" v="1"/>
+                            <prop k="name" v="circle"/>
+                            <prop k="offset" v="0,0"/>
+                            <prop k="offset_map_unit_scale" v="0,0"/>
+                            <prop k="offset_unit" v="MM"/>
+                            <prop k="outline_style" v="no"/>
+                            <prop k="outline_width" v="0"/>
+                            <prop k="outline_width_map_unit_scale" v="0,0"/>
+                            <prop k="outline_width_unit" v="MM"/>
+                            <prop k="scale_method" v="area"/>
+                            <prop k="size" v="1.2"/>
                             <prop k="size_map_unit_scale" v="0,0"/>
                             <prop k="size_unit" v="MM"/>
                             <prop k="vertical_anchor_point" v="1"/>
@@ -239,7 +458,7 @@
                 <property key="labeling/fieldName" value=""/>
                 <property key="labeling/fontBold" value="true"/>
                 <property key="labeling/fontCapitals" value="0"/>
-                <property key="labeling/fontFamily" value="Droid Sans"/>
+                <property key="labeling/fontFamily" value="MS Shell Dlg 2"/>
                 <property key="labeling/fontItalic" value="false"/>
                 <property key="labeling/fontLetterSpacing" value="0"/>
                 <property key="labeling/fontLimitPixelSize" value="false"/>
@@ -268,7 +487,7 @@
                 <property key="labeling/minFeatureSize" value="0"/>
                 <property key="labeling/multilineAlign" value="0"/>
                 <property key="labeling/multilineHeight" value="1"/>
-                <property key="labeling/namedStyle" value="Bold"/>
+                <property key="labeling/namedStyle" value="Fett"/>
                 <property key="labeling/obstacle" value="true"/>
                 <property key="labeling/placeDirectionSymbol" value="0"/>
                 <property key="labeling/placement" value="0"/>
@@ -400,10 +619,10 @@
                     <widgetv2config IsMultiline="0" fieldEditable="1" UseHtml="0" labelOnTop="0"/>
                 </edittype>
             </edittypes>
-            <editform></editform>
+            <editform>.</editform>
             <editforminit></editforminit>
             <featformsuppress>0</featformsuppress>
-            <annotationform></annotationform>
+            <annotationform>.</annotationform>
             <editorlayout>generatedlayout</editorlayout>
             <excludeAttributesWMS/>
             <excludeAttributesWFS/>
@@ -430,8 +649,8 @@
             <DegreeFormat type="QString">D</DegreeFormat>
         </PositionPrecision>
         <WCSUrl type="QString"></WCSUrl>
-        <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
         <WMSContactPhone type="QString"></WMSContactPhone>
+        <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
         <WMSServiceAbstract type="QString"></WMSServiceAbstract>
         <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
         <Measure>
@@ -452,12 +671,22 @@
             <CanvasColorBluePart type="int">255</CanvasColorBluePart>
         </Gui>
         <Digitizing>
-            <LayerSnappingList type="QStringList"/>
-            <LayerSnappingEnabledList type="QStringList"/>
+            <LayerSnappingList type="QStringList">
+                <value>nodes_Hamburg20140824212026942</value>
+            </LayerSnappingList>
+            <LayerSnappingEnabledList type="QStringList">
+                <value>disabled</value>
+            </LayerSnappingEnabledList>
             <AvoidIntersectionsList type="QStringList"/>
-            <LayerSnappingToleranceUnitList type="QStringList"/>
-            <LayerSnapToList type="QStringList"/>
-            <LayerSnappingToleranceList type="QStringList"/>
+            <LayerSnappingToleranceUnitList type="QStringList">
+                <value>0</value>
+            </LayerSnappingToleranceUnitList>
+            <LayerSnapToList type="QStringList">
+                <value>to_vertex_and_segment</value>
+            </LayerSnapToList>
+            <LayerSnappingToleranceList type="QStringList">
+                <value>0.000000</value>
+            </LayerSnappingToleranceList>
         </Digitizing>
         <Identify>
             <disabledLayers type="QStringList"/>
